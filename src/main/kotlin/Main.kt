@@ -2,6 +2,7 @@ data class Philosopher(val name: String)
 enum class ChopstickStatus {
     FREE, OCCUPIED
 }
+
 class Chopstick(val id: Int) {
     var status = ChopstickStatus.FREE
 }
