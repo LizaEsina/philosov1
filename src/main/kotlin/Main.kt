@@ -3,7 +3,7 @@ enum class ChopstickStatus {
     FREE, OCCUPIED
 }
 
-class Chopstick(val id: Int) {
+class Chopstick {
     var status = ChopstickStatus.FREE
 }
 class DiningTable(val numPhilosophers: Int) {
@@ -12,8 +12,8 @@ class DiningTable(val numPhilosophers: Int) {
 
     init {
         for (i in 1..numPhilosophers) {
-            philosophers.add(Philosopher("Philosopher $i"))
-            chopsticks.add(Chopstick(i))
+            philosophers.add(Philosopher("Философы $i"))
+            chopsticks.add(Chopstick())
         }
     }
     fun startDining() {
@@ -28,9 +28,9 @@ class DiningTable(val numPhilosophers: Int) {
             if (leftChopstick.status == ChopstickStatus.FREE && rightChopstick.status == ChopstickStatus.FREE) {
                 leftChopstick.status = ChopstickStatus.OCCUPIED
                 rightChopstick.status = ChopstickStatus.OCCUPIED
-                println("${philosopher.name} is dining")
+                println("${philosopher.name} обедает")
             } else {
-                println("${philosopher.name} is contemplating")
+                println("${philosopher.name} думает")
             }
 
             currentIndex = (currentIndex + 1) % numPhilosophers
@@ -38,13 +38,13 @@ class DiningTable(val numPhilosophers: Int) {
     }
 }
 fun main() {
-    print("Enter the number of philosophers: ")
+    print("Введите кол-во философов: ")
     var numPhilosophers = readLine()?.toIntOrNull()
     while (numPhilosophers == null || numPhilosophers <= 0) {
-        print("Enter the number of philosophers: ")
+        print("Введите кол-во философов: ")
         numPhilosophers = readLine()?.toIntOrNull()
         if (numPhilosophers == null || numPhilosophers <= 0) {
-            println("Invalid number of philosophers")
+            println("Не правильное число")
         }
     }
     val diningTable = DiningTable(numPhilosophers)
